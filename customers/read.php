@@ -16,7 +16,7 @@ if($requestMethod == "GET") { //set up read.php so that no other methos are allo
 } else {
     $data = [               //message that is send if method is anything else than GET                               
         'status' => 405,
-        'message' => $requestMethod. 'Method not Allowed',
+        'message' => $requestMethod. ' Method not Allowed',
 
     ];
     header("HTTP/1.0 405 Method Not Allowed");

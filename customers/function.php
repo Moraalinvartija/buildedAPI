@@ -46,3 +46,59 @@ function getCustomerList() {        //get all data from table 'customers' that i
     }
 
 }
+
+function error422($message) {
+
+    $data = [               //message that is send with error422                          
+        'status' => 422,
+        'message' => $message,
+
+    ];
+    header("HTTP/1.0 422 Unprocessable Entity");
+    echo json_encode($data);    //encode it to JSON
+    exit();
+
+}
+function storeCustomer($customerInput) {
+    global $conn;
+
+    $fname = mysqli_real_escape_string($conn, $customerInput['client_fname']);
+    $lname = mysqli_real_escape_string($conn, $customerInput['client_lname']);
+    $address = mysqli_real_escape_string($conn, $customerInput['client_address']);
+
+    if(empty(trim($fname))) {
+
+        return error422('Enter client first name');
+
+    } elseif(empty(trim($lname))) {
+        return error422('Enter client last name');
+
+    } elseif(empty(trim($address))) {
+        return error422('Enter client address');
+
+    } else {
+        $query = "INSERT INTO customers (client_fname, client_lname, client_address) VALUES ('$fname','$lname','$address')";
+        $result = mysqli_query($conn, $query);
+
+        if($result) {
+            $data = [               //message that is send if storing customer is successfully                
+                'status' => 201,
+                'message' =>' Customer Created Successfully ',
+        
+            ];
+            header("HTTP/1.0 201 Data Created");
+            return json_encode($data);    //encode it to JSON
+
+        } else {
+            $data = [                                     
+                'status' => 500,  //message that is send if storing customer has failed
+                'message' =>' Internal Server Error',
+        
+            ];
+            header("HTTP/1.0 500 Internal Server Error");
+            return json_encode($data);    //encode it to JSON
+
+        }
+    }
+    
+}
