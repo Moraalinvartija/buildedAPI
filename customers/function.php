@@ -1,6 +1,7 @@
 <?php
 
 require '../inc/dbcon.php';
+                                    //most all customers functions
 function getCustomerList() {        //get all data from table 'customers' that is in database
 
     global $conn;
@@ -59,7 +60,7 @@ function error422($message) {
     exit();
 
 }
-function storeCustomer($customerInput) {
+function storeCustomer($customerInput) {        // POST request function
     global $conn;
 
     $fname = mysqli_real_escape_string($conn, $customerInput['client_fname']);
@@ -103,7 +104,7 @@ function storeCustomer($customerInput) {
     
 }
 
-function getCustomer($customerParams) {
+function getCustomer($customerParams) {         // READ request for single customer
 
     global $conn;
 
@@ -152,4 +153,58 @@ function getCustomer($customerParams) {
 
     }
 
+}
+
+function updateCustomer($customerInput, $customerParams) {        // PUT (update) request function
+    global $conn;
+
+    if(!isset($customerParams['client_id'])) {
+
+        return error422('customer id not found in URL');
+
+
+    } elseif($customerParams['client_id'] == null)  {
+
+        return error422('Enter the customer id');
+
+    }
+    $customerId = mysqli_real_escape_string($conn, $customerParams['client_id']);
+    $fname = mysqli_real_escape_string($conn, $customerInput['client_fname']);
+    $lname = mysqli_real_escape_string($conn, $customerInput['client_lname']);
+    $address = mysqli_real_escape_string($conn, $customerInput['client_address']);
+
+    if(empty(trim($fname))) {
+        return error422('Enter client first name');
+
+    } elseif(empty(trim($lname))) {
+        return error422('Enter client last name');
+
+    } elseif(empty(trim($address))) {
+        return error422('Enter client address');
+
+    } else {
+        $query = "UPDATE customers SET client_fname='$fname', client_lname='$lname', client_address ='$address' WHERE client_id='$customerId' LIMIT 1";
+        $result = mysqli_query($conn, $query);
+
+        if($result) {
+            $data = [               //message that is send if updating customer is done successfully             
+                'status' => 200,
+                'message' =>' Customer updated Successfully ',
+        
+            ];
+            header("HTTP/1.0 200 Data Updated");
+            return json_encode($data);    //encode it to JSON
+
+        } else {
+            $data = [                                     
+                'status' => 500,  //message that is send if updating customer has failed
+                'message' =>' Internal Server Error',
+        
+            ];
+            header("HTTP/1.0 500 Internal Server Error");
+            return json_encode($data);    //encode it to JSON
+
+        }
+    }
+    
 }
