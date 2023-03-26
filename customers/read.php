@@ -10,8 +10,16 @@ $requestMethod = $_SERVER ["REQUEST_METHOD"];
 
 if($requestMethod == "GET") { //set up read.php so that no other methos are allowed (update,delete etc)
 
+    if(isset($_GET['client_id']))  {
+
+        $customer = getCustomer($_GET);
+        echo $customer;
+
+    } else {
+
     $customerList = getCustomerList();
     echo $customerList;
+    }
 
 } else {
     $data = [               //message that is send if method is anything else than GET                               

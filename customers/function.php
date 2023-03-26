@@ -102,3 +102,54 @@ function storeCustomer($customerInput) {
     }
     
 }
+
+function getCustomer($customerParams) {
+
+    global $conn;
+
+    if($customerParams['client_id'] == null) {
+
+        return error422('Enter your client id');
+    }
+
+    $customerId = mysqli_real_escape_string($conn, $customerParams['client_id']);
+
+    $query = "SELECT * FROM customers WHERE client_id ='$customerId' LIMIT 1";
+    $result = mysqli_query($conn, $query);
+
+    if($result) {
+
+        if(mysqli_num_rows($result) == 1) {
+            $res = mysqli_fetch_assoc($result);
+            $data = [                                     
+                'status' => 200,  //message that is send if customer has been found
+                'message' =>' Customer Fetched Successfully',
+                'data' => $res
+        
+            ];
+            header("HTTP/1.0 200 Customer Fetched Successfully");
+            return json_encode($data);    //encode it to JSON
+
+        } else {
+            $data = [                                     
+                'status' => 404,  //message that is send if storing customer has failed
+                'message' =>' No Customer Found',
+        
+            ];
+            header("HTTP/1.0 404 No Customer Found");
+            return json_encode($data);    //encode it to JSON
+
+        }
+
+    } else {
+        $data = [                                     
+            'status' => 500,  //message that is send if finding customer has failed
+            'message' =>' Internal Server Error',
+    
+        ];
+        header("HTTP/1.0 500 Internal Server Error");
+        return json_encode($data);    //encode it to JSON
+
+    }
+
+}
