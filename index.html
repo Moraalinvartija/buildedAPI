@@ -63,7 +63,7 @@
             data-bs-target="#update_client_collapse">Update Client</button>
           <div id="update_client_collapse" class="collapse ">
             <!--Update Client Form-->
-            <form id="update_client_form" onsubmit="updateClient();reset();return false;">
+            <form id="update_client_form" onsubmit="updateClient();reset();fetchDataAll();return false;">
               <div class="mb-3 mt-3">
                 <input type="text" class="form-control input-lg" id="client_id_update" placeholder="Client Id" required>
               </div>
@@ -86,7 +86,7 @@
             data-bs-target="#delete_client_collapse">Delete Client</button>
           <div id="delete_client_collapse" class="collapse ">
             <!--Delete Client Form-->
-            <form id="delete_client_form" onsubmit="deleteClient();reset();return false;">
+            <form id="delete_client_form" onsubmit="deleteClient();reset();fetchDataAll();return false;">
               <div class="mb-3 mt-3">
                 <input type="text" class="form-control input-lg" id="client_id_delete" placeholder="Client Id" required>
               </div>
