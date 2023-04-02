@@ -99,7 +99,7 @@ table inside index.html.</div>
 <div>Upadate operation is added</div>
 <h4>Version 1.5</h4>
 <div>Delete operaton,javascript fetch function to fill table are added. Started to work index.html user interface for API.</div>
-h4>Version SQL File</h4>
+<h4>Version SQL File</h4>
 <div>SQL file is inserted into mix</div>
 <h4>Version 1.51</h4>
 <div>Started to work more with javascript fetch functions. CreateUser() function added. More user interface fiddling</div>
