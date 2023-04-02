@@ -70,6 +70,7 @@ function storeCustomer($customerInput) {        // POST request function
     if(empty(trim($fname))) {
 
         return error422('Enter client first name');
+        
 
     } elseif(empty(trim($lname))) {
         return error422('Enter client last name');
