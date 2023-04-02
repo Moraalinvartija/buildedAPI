@@ -7,7 +7,7 @@ PHP REST API to create, read, update and delete tables from MySQLi database
 <h2>Example video</h2>
 
 
-https://user-images.githubusercontent.com/100047926/229362246-749b87f5-974a-43e2-bbef-b1e4722dee0d.mp4
+
 
 
 <h2>Installation:</h2>
