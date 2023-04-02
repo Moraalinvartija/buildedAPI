@@ -4,6 +4,11 @@ PHP REST API to create, read, update and delete tables from MySQLi database
 <h1>Description</h1>
 <div>1. This is selfmade REST API where data is created, read, updated and deleted with fetch requests. This project also includes user interface where user
    can use the API from the website. The idea of this project has been to help me understand how REST operates so there might be some unnessacry things in the code, cause this is my first REST API</div>
+<h2>Example video</h2>
+
+
+https://user-images.githubusercontent.com/100047926/229362246-749b87f5-974a-43e2-bbef-b1e4722dee0d.mp4
+
 
 <h2>Installation:</h2>
 <div>To use this API you need to:</div>
