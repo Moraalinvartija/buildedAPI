@@ -78,20 +78,28 @@ table inside index.html.</div>
 
 <h2>PHP</h2>
 <h4>Description</h4>
-<div> CRUD operations that REST API needs to function</div> 
+<div> CRUD operations that REST API needs to function. "http://localhost/clientapi/buildedapi/customers/" is the basic address we are using to access and store data. Depending which CRUD operation we are using, the end portion that is added to basic address changes.</div> 
 
 <h3>1. Create.php</h3>
 <h4>Description</h4>
-<div> This is a procedure that generates new records through an ‘INSERT’ statement. Headers are also defined here for the operation so that nothing else than allowed method is accepted</div>
+<div> This is a procedure that generates new records through an ‘INSERT’ statement. Headers are also defined here for the operation so that nothing else than allowed method is accepted. </div>
+<div>Post method is used to access "http://localhost/clientapi/buildedapi/customers/create.php". So "create.php" is the end portion that is added through this procedure.</div>
+<div>Because index is added automatically by database into customers table, we bring parameters: 1.clients first name, 2.clients last name and 3.clients addresss with us to database to store. </div>
+
 <h3>1. Delete.php</h3>
 <h4>Description</h4>
 <div> This is a procedure used to remove one entri entirely. Headers are also defined here for the operation so that nothing else than allowed method is accepted</div>
+<div> Delete method is used to access "http://localhost/clientapi/buildedAPI/customers/delete.php?client_id=X" where X is the clients ID (parameter we are getting from user) we want to delete.  "delete.php?client_id=X" is the end part for the address.</div>
+<div> </div>
 <h3>1. Read.php</h3>
 <h4>Description</h4>
 <div> This is a procedure used to read/retrieve data based on desired input parameters. Headers are also defined here for the operation so that nothing else than allowed method is accepted</div>
+<div>GET method is used to access "http://localhost/clientapi/buildedapi/customers/read.php" where "read.php" is the end portion. We dont need to bring parameters to database through this method cause we are just fetching all data from one table </div>
 <h3>1. Update.php</h3>
 <h4>Description</h4>
 <div> This is a procedure used to modify records without overwriting them. Headers are also defined here for the operation so that nothing else than allowed method is accepted</div>
+<div> PUT method is used to access"http://localhost/clientapi/buildedAPI/customers/update.php?client_id=X" where is X is the clients ID. Because we are updating data we need every parameter we can from user. 1. ID of the client we want to update 2. Clients First name 3.Clients  lastname and lastly 4. Client address</div>
+<div>"update.php?client_id=X" is end portion this time.</div>
 <h2> Versions</h2>
 <h3> Here are list what changes has been made into the code in every version. Version numbers are kinda stupid cause I didint realize first how version numbers are defined...so bear with them</h3>
 <h4>Version 1.1</h4>
